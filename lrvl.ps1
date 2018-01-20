@@ -43,7 +43,8 @@ function vagrantUp {
 function vagrantGo {
   & Write-Host "vagrant starting"
   & vagrant up
-  # open URL in defualt browser
+  # open URL in default browser
+  & echo "http://$($siteurl)$($tld)"
   (New-Object -Com Shell.Application).Open("http://$($siteurl)$($tld)")
   & vagrantSSH
 }
@@ -86,7 +87,7 @@ function newProject {
   & Add-Content -Encoding UTF8 C:\Windows\system32\drivers\etc\hosts "192.168.10.10 `t$($new)$($tld) `t# reeds powershell magic"
 
   # if available globally, don't need to copy
-  & Copy-Item -Path ..\lrvl.ps1 -Destination .\
+#  & Copy-Item -Path ..\lrvl.ps1 -Destination .\
 
   # friendly output
   & Write-Host "
