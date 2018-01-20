@@ -1,4 +1,4 @@
-# lrvl.ps1
+# lrvl - a short and sweet laravel installer for windows
 Laravel, Vagrant, Homestead, and automatic host file powershell helper (only tested on my own Windows 10 box, YMMV)
 
 
