@@ -8,8 +8,11 @@ param(
   [string] $vm,
   [string] $new
 )
+
 # Prefered development TLD
 $tld = '.test'
+
+# startup routine
 function startUp {
   If (!$vm -and $new) {
     newProject
@@ -24,7 +27,7 @@ function startUp {
   }
 }
 
-# Vagrant Controlls
+# Vagrant Controls
 $siteUrl = $(Get-Location | Split-Path -Leaf)
 function vagrantController {
   switch -regex ($vm) {
@@ -36,15 +39,18 @@ function vagrantController {
     default { & Write-Host "vagrant command not understood" }
   }
 }
+
+# vagrant wrapper functions
 function vagrantUp {
   & Write-Host "vagrant up"
   & vagrant up
 }
+
 function vagrantGo {
   & Write-Host "vagrant starting"
   & vagrant up
   # open URL in default browser
-  & echo "http://$($siteurl)$($tld)"
+  & echo "Website available at http://$($siteurl)$($tld)"
   (New-Object -Com Shell.Application).Open("http://$($siteurl)$($tld)")
   & vagrantSSH
 }
@@ -58,6 +64,7 @@ function vagrantStatus {
   & Write-Host "vagrant status"
   & vagrant status
 }
+
 function vagrantDestroy {
   & Write-Host "vagrant destroying"
   & vagrant destroy --force
@@ -87,7 +94,7 @@ function newProject {
   & Add-Content -Encoding UTF8 C:\Windows\system32\drivers\etc\hosts "192.168.10.10 `t$($new)$($tld) `t# reeds powershell magic"
 
   # if available globally, don't need to copy
-#  & Copy-Item -Path ..\lrvl.ps1 -Destination .\
+  #& Copy-Item -Path ..\lrvl.ps1 -Destination .\
 
   # friendly output
   & Write-Host "
@@ -102,4 +109,6 @@ function newProject {
   & code .
 }
 
+# run startup routine
 startUp
+
