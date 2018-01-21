@@ -13,7 +13,7 @@ Usage is pretty simply, from your prefered web root folder on your computer, usi
 Since this basically automates the install intructions found in the official [documentation](https://laravel.com/docs/5.5/installation), the same requirements are still requirements. This basically means:
 - PHP >= 7.0.0
 - [Composer](https://getcomposer.org/download/)
-- VM Software ([VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)/VMWare/Hyper-V) * I have only tested this with VirtualBox
+- One of {[VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)/VMWare/Hyper-V} *I have only tested this with VirtualBox*
 - [Vagrant](https://www.vagrantup.com/downloads.html)
 
 It also assumes your going to start working on your project right away, and your prefered text editor is VSCode. If this is wrong, or your code.exe isn't available in your $PATH, change the line at the end from `& code.` to `# & code .`. alternatively, you could change it to your prefered editor. for example sublime text `& subl .`
@@ -29,8 +29,8 @@ It also assumes your going to start working on your project right away, and your
 | command | shortcode | usage                  | action                                |
 | ------- | --------- | ---------------------- | ------------------------------------- |
 | -new    | -n        | lrvl -n myProject      | Creates a new project                 |
-| -vm     | -v        | lrvl -v up?            | vagrant up                            |
-| -vm     | -v        | lrvl -v go?            | vagrant up, open browser, vagrant ssh |
+| -vm     | -v        | lrvl -v u(p)?          | vagrant up                            |
+| -vm     | -v        | lrvl -v g(o)?          | vagrant up, open browser, vagrant ssh |
 | -vm     | -v        | lrvl -v h(alt)?        | vagrant halt                          |
 | -vm     | -v        | lrvl -v s(sh)?         | vagrant ssh                           |
 | -vm     | -v        | lrvl -v st(atus)?      | vagrant status                        |
