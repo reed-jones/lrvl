@@ -29,6 +29,11 @@ It also assumes your going to start working on your project right away, and your
 | command | shortcode | usage                  | action                                |
 | ------- | --------- | ---------------------- | ------------------------------------- |
 | -new    | -n        | lrvl -n myProject      | Creates a new project                 |
+
+
+
+| command | shortcode | usage                  | action                                |
+| ------- | --------- | ---------------------- | ------------------------------------- |
 | -vm     | -v        | lrvl -v u(p)?          | vagrant up                            |
 | -vm     | -v        | lrvl -v g(o)?          | vagrant up, open browser, vagrant ssh |
 | -vm     | -v        | lrvl -v h(alt)?        | vagrant halt                          |
@@ -36,3 +41,11 @@ It also assumes your going to start working on your project right away, and your
 | -vm     | -v        | lrvl -v st(atus)?      | vagrant status                        |
 | -vm     | -v        | lrvl -v r(eprovision)? | vagrant reload --provision            |
 | -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
+
+
+
+| command  | shortcode | usage                  | action                                   |
+| -------- | --------- | ---------------------- | ---------------------------------------- |
+| -artisan | -a        | lrvl -v m(igrate)?     | vagrant ssh; php artisan migrate         |
+| -artisan | -a        | lrvl -v r(efresh)?     | vagrant ssh; php artisan migrate:refresh |
+| -artisan | -a        | lrvl -v mr(eset)?      | vagrant ssh; php artisan migrate:reset   |
