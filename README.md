@@ -36,5 +36,3 @@ It also assumes your going to start working on your project right away, and your
 | -vm     | -v        | lrvl -v st(atus)?      | vagrant status                        |
 | -vm     | -v        | lrvl -v r(eprovision)? | vagrant reload --provision            |
 | -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
-
-Its probably worth pointing out that there arent any safe guards currently in place, so making a new project inside your current project probably works, but doesn't make any sense, same with running and of the vagrant (vm) commands outside of a specific project folder.
