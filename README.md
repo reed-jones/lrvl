@@ -22,17 +22,19 @@ It also assumes your going to start working on your project right away, and your
 - `lrvl -n myProject`
 - `lrvl -v g`
 - // Do Your Work
-- `lrvl -v d`
+- `lrvl -v h`
 
 ## full list of commands as follows:
 
-| command | shortcode | usage              | action                                |
-| ------- | --------- | ------------------ | ------------------------------------- |
-| -new    | -n        | lrvl -n myProject  | Creates a new project                 |
-| -vm     | -v        | lrvl -v up?        | vagrant up                            |
-| -vm     | -v        | lrvl -v go?        | vagrant up, open browser, vagrant ssh |
-| -vm     | -v        | lrvl -v s(sh)?     | vagrant ssh                           |
-| -vm     | -v        | lrvl -v st(atus)?  | vagrant status                        |
-| -vm     | -v        | lrvl -v d(estroy)? | vagrant destroy --force               |
+| command | shortcode | usage                  | action                                |
+| ------- | --------- | ---------------------- | ------------------------------------- |
+| -new    | -n        | lrvl -n myProject      | Creates a new project                 |
+| -vm     | -v        | lrvl -v up?            | vagrant up                            |
+| -vm     | -v        | lrvl -v go?            | vagrant up, open browser, vagrant ssh |
+| -vm     | -v        | lrvl -v h(alt)?        | vagrant halt                          |
+| -vm     | -v        | lrvl -v s(sh)?         | vagrant ssh                           |
+| -vm     | -v        | lrvl -v st(atus)?      | vagrant status                        |
+| -vm     | -v        | lrvl -v r(eprovision)? | vagrant reload --provision            |
+| -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
 
 Its probably worth pointing out that there arent any safe guards currently in place, so making a new project inside your current project probably works, but doesn't make any sense, same with running and of the vagrant (vm) commands outside of a specific project folder.
