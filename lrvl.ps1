@@ -15,15 +15,23 @@ $tld = '.test'
 # startup routine
 function startUp {
   If (!$vm -and $new) {
+    If ([System.IO.File]::Exists("$((Get-Item -Path ".\" -Verbose).FullName)\Homestead.yaml")) {
+      & Write-Host "You already seem to be in a Laravel project folder..."
+      exit
+    }
     newProject
   }
   ElseIf (!$new -and $vm) {
+    If (![System.IO.File]::Exists("$((Get-Item -Path ".\" -Verbose).FullName)\Homestead.yaml")) {
+      & Write-Host "This doesn't seem to be a valid Homestead (Laravel) folder..."
+      exit
+    }
     vagrantController
   }
   Else {
     Write-Host "Sorry, command not understood. Options include:
     -new {siteName}
-    -vm {go/connect/destroy}"
+    -vm {go/halt/status/destroy}"
   }
 }
 
@@ -33,8 +41,10 @@ function vagrantController {
   switch -regex ($vm) {
     "^up?$" { vagrantUp }
     "^go?$" { vagrantGo }
+    "^h(alt)?$" { vagrantHalt }
     "^s(sh)?$" { vagrantSSH }
     "^st(atus)?$" { vagrantStatus }
+    "^r(eprovision)?$" { vagrantReprovision }
     "^d(estroy)?$" { vagrantDestroy }
     default { & Write-Host "vagrant command not understood" }
   }
@@ -53,6 +63,16 @@ function vagrantGo {
   & echo "Website available at http://$($siteurl)$($tld)"
   (New-Object -Com Shell.Application).Open("http://$($siteurl)$($tld)")
   & vagrantSSH
+}
+
+function vagrantHalt {
+  & Write-Host "vagrant Halt"
+  & vagrant halt
+}
+
+function vagrantReprovision {
+  & Write-Host "vagrant re-provisioning"
+  & vagrant reload --provision
 }
 
 function vagrantSSH {
