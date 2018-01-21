@@ -1,5 +1,5 @@
 # lrvl - a short and sweet laravel installer for windows
-Laravel, Vagrant, Homestead, and automatic host file powershell helper (only tested on my own Windows 10 box, YMMV)
+Based on Laravel, Vagrant, Homestead, and automatically configures adds to your Host file, making your new laravel project available at yourProject.test (only tested on my own Windows 10 box, YMMV)
 
 ## About
 
