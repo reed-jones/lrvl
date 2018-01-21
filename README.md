@@ -1,5 +1,5 @@
 # lrvl - a short and sweet laravel installer for windows
-Laravel, Vagrant, Homestead, and automatic host file powershell helper (only tested on my own Windows 10 box, YMMV)
+Based on Laravel, Vagrant, Homestead, and automatically configures adds to your Host file, making your new laravel project available at yourProject.test (only tested on my own Windows 10 box, YMMV)
 
 ## About
 
@@ -13,14 +13,14 @@ Usage is pretty simply, from your prefered web root folder on your computer, usi
 Since this basically automates the install intructions found in the official [documentation](https://laravel.com/docs/5.5/installation), the same requirements are still requirements. This basically means:
 - PHP >= 7.0.0
 - [Composer](https://getcomposer.org/download/)
-- VM Software ([VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)/VMWare/Hyper-V) * I have only tested this with VirtualBox
+- One of {[VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)/VMWare/Hyper-V} *I have only tested this with VirtualBox*
 - [Vagrant](https://www.vagrantup.com/downloads.html)
 
 It also assumes your going to start working on your project right away, and your prefered text editor is VSCode. If this is wrong, or your code.exe isn't available in your $PATH, change the line at the end from `& code.` to `# & code .`. alternatively, you could change it to your prefered editor. for example sublime text `& subl .`
 
 ## Again, steps are:
 - `lrvl -n myProject`
-- `lrvl -v g`
+- `lrvl -v u`
 - // Do Your Work
 - `lrvl -v h`
 
@@ -29,12 +29,10 @@ It also assumes your going to start working on your project right away, and your
 | command | shortcode | usage                  | action                                |
 | ------- | --------- | ---------------------- | ------------------------------------- |
 | -new    | -n        | lrvl -n myProject      | Creates a new project                 |
-| -vm     | -v        | lrvl -v up?            | vagrant up                            |
-| -vm     | -v        | lrvl -v go?            | vagrant up, open browser, vagrant ssh |
+| -vm     | -v        | lrvl -v u(p)?          | vagrant up                            |
+| -vm     | -v        | lrvl -v g(o)?          | vagrant up, open browser, vagrant ssh |
 | -vm     | -v        | lrvl -v h(alt)?        | vagrant halt                          |
 | -vm     | -v        | lrvl -v s(sh)?         | vagrant ssh                           |
 | -vm     | -v        | lrvl -v st(atus)?      | vagrant status                        |
 | -vm     | -v        | lrvl -v r(eprovision)? | vagrant reload --provision            |
 | -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
-
-Its probably worth pointing out that there arent any safe guards currently in place, so making a new project inside your current project probably works, but doesn't make any sense, same with running and of the vagrant (vm) commands outside of a specific project folder.
