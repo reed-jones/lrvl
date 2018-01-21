@@ -9,6 +9,8 @@ To install, git clone this repo somewhere nice, then for convenience, add that p
 
 Usage is pretty simply, from your prefered web root folder on your computer, using the powershell commandline (I recommend checking out [cmder](http://cmder.net/)) create a new project using `lrvl -new myProject`. The script will run off, installing all the things into the `myProject` folder, `cd` into it, and open up your editor. Feel free to look over and update your [Homestead.yaml](https://laravel.com/docs/5.5/homestead) file as you would like now. notice your ` sites: map: ` is configured for your URL, as an aside an entry as been added to your hosts file also. start it up with `lrvl -vm go` (this will take awhile as we wait for vagrant). Your browser should open up to myProject.com, and your command line will be ssh'd into your vagrant box. When your done, just `exit` your ssh connection and `lrvl -vm destroy` to shutdown the server.
 
+During development, I generally run `yarn watch` (or npm if you prefer) on my windows computer, so as to avoid any symbolic link problems with the virtual machine. This seems to work well, but the drawback is that to connect to the database, or make migrations etc, you either have to: A. connect on a non-standard port, or B. vagrant ssh in, php artisan migrate, then exit to get back to your `yarn watch`. This is now solved using the `-artisan` command which ssh's in, runs the command, and exits automatically.
+
 ## Requirements
 Since this basically automates the install intructions found in the official [documentation](https://laravel.com/docs/5.5/installation), the same requirements are still requirements. This basically means:
 - PHP >= 7.0.0
@@ -26,11 +28,14 @@ It also assumes your going to start working on your project right away, and your
 
 ## full list of commands as follows:
 
+### Create Project Controls
+
 | command | shortcode | usage                  | action                                |
 | ------- | --------- | ---------------------- | ------------------------------------- |
 | -new    | -n        | lrvl -n myProject      | Creates a new project                 |
 
 
+### Vagrant Box Controls
 
 | command | shortcode | usage                  | action                                |
 | ------- | --------- | ---------------------- | ------------------------------------- |
@@ -43,6 +48,7 @@ It also assumes your going to start working on your project right away, and your
 | -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
 
 
+# Run php artisan commands without having to manually ssh in
 
 | command  | shortcode | usage                  | action                                   |
 | -------- | --------- | ---------------------- | ---------------------------------------- |
