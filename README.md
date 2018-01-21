@@ -48,7 +48,7 @@ It also assumes your going to start working on your project right away, and your
 | -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
 
 
-# Run php artisan commands without having to manually ssh in
+### Run php artisan commands without having to manually ssh in
 
 | command  | shortcode | usage                  | action                                   |
 | -------- | --------- | ---------------------- | ---------------------------------------- |
