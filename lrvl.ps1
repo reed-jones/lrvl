@@ -6,33 +6,77 @@
 
 param(
   [string] $vm,
-  [string] $new
+  [string] $new,
+  [string] $artisan
 )
+
 
 # Prefered development TLD
 $tld = '.test'
 
 # startup routine
 function startUp {
-  If (!$vm -and $new) {
-    If ([System.IO.File]::Exists("$((Get-Item -Path ".\" -Verbose).FullName)\Homestead.yaml")) {
+
+  $laravelInstall = [System.IO.File]::Exists("$((Get-Item -Path ".\" -Verbose).FullName)\Homestead.yaml")
+
+  If ($new) {
+    If ($laravelInstall) {
       & Write-Host "You already seem to be in a Laravel project folder..."
       exit
     }
     newProject
   }
-  ElseIf (!$new -and $vm) {
-    If (![System.IO.File]::Exists("$((Get-Item -Path ".\" -Verbose).FullName)\Homestead.yaml")) {
+  ElseIf ($vm) {
+    If (!$laravelInstall) {
       & Write-Host "This doesn't seem to be a valid Homestead (Laravel) folder..."
       exit
     }
     vagrantController
+  }
+  ElseIf ($artisan) {
+    If (!$laravelInstall) {
+      & Write-Host "This doesn't seem to be a valid Homestead (Laravel) folder..."
+      exit
+    }
+    artisanController
   }
   Else {
     Write-Host "Sorry, command not understood. Options include:
     -new {siteName}
     -vm {go/halt/status/destroy}"
   }
+}
+
+# Artisan Controller
+function artisanController {
+  switch -regex ($artisan) {
+    "^m(igrate)?$" { migrate }
+    "^r(efresh)?$" { migrateRefresh }
+    "^mr(eset)?$" { migrateReset }
+    default { & Write-Host "migrate command not understood" }
+  }
+}
+
+# migrate wrapper functions
+function migrate {
+  & Write-Host "php artisan migrate"
+  & vagrant ssh -c 'cd ~/code; php artisan migrate'
+}
+
+function migrateRefresh {
+  & Write-Host "php artisan migrate:refresh"
+  & vagrant ssh -c 'cd ~/code; php artisan migrate:refresh'
+}
+
+function migrateReset {
+  & Write-Host "php artisan migrate:reset"
+  & vagrant ssh -c 'cd ~/code; php artisan migrate:reset'
+}
+
+# vagrant wrapper functions
+function vagrantUp {
+  & Write-Host "vagrant up"
+  & vagrant up
 }
 
 # Vagrant Controls
@@ -129,6 +173,12 @@ function newProject {
   & code .
 }
 
-# run startup routine
-startUp
+If ($psboundparameters.count -eq 1) {
+  # run startup routine
+  startUp
+} Else {
+  # & Write-Host "parameters are good"
+  & Write-Host "You have supplied incompatable parameters"
+  exit
+}
 
