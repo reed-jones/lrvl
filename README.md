@@ -36,3 +36,12 @@ It also assumes your going to start working on your project right away, and your
 | -vm     | -v        | lrvl -v st(atus)?      | vagrant status                        |
 | -vm     | -v        | lrvl -v r(eprovision)? | vagrant reload --provision            |
 | -vm     | -v        | lrvl -v d(estroy)?     | vagrant destroy --force               |
+
+## Gotchas
+In order to get Yarn to work properly, I needed to enable symbolic links. The Laravels docs gives you this block to paste into your Vagrantfile. I put it just above the very last `end`.
+
+```
+config.vm.provider "virtualbox" do |v|
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+end
+```
