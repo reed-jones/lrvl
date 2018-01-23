@@ -11,7 +11,7 @@ Usage is pretty simply, from your prefered web root folder on your computer, usi
 
 During development, I generally run `yarn watch` (or npm if you prefer) on my windows computer, so as to avoid any symbolic link problems with the virtual machine. This seems to work well, but the drawback is that to connect to the database, or make migrations etc, you either have to: A. connect on a non-standard port, or B. vagrant ssh in, php artisan migrate, then exit to get back to your `yarn watch`. This is now solved using the `-artisan` command which ssh's in, runs the command, and exits automatically.
 
-*I should probably note that if this script is not run as admin, it will fail to auto-configure your hosts file. If you choose to not run this script as admin, your hosts file can easily be configured manually.*
+*I should probably note that if this script is not run as admin, it will fail to auto-configure your hosts file. If you choose to not run this script as admin, your hosts file can easily be configured manually. Open* `C:\Windows\System32\drivers\etc\hosts` *in your text editor of choice and add a line to the bottom of the file that resembles* `192.168.10.10 	yourproject.test` *of course you can change the IP address to match your vagrant box ip (which is written in the Homestead.yaml file) if you so choose.*
 
 ## Requirements
 Since this basically automates the install intructions found in the official [documentation](https://laravel.com/docs/5.5/installation), the same requirements are still requirements. This basically means:
